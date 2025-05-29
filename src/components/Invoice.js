@@ -3,7 +3,7 @@ import html2pdf from "html2pdf.js";
 import { FaEnvelope, FaGlobe, FaMapMarkerAlt } from 'react-icons/fa';
 
 
-export default function Invoice({ customer, items }) {
+export default function Invoice({ customer, items, onValidationError }) {
     const invoiceRef = useRef();
 
     const subtotal = items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
@@ -11,6 +11,34 @@ export default function Invoice({ customer, items }) {
     const total = subtotal + delivery;
 
     const handleDownload = () => {
+        if (!customer.name || !customer.company || !customer.email) {
+            if (onValidationError) {
+              onValidationError("Please fill in all customer information before downloading.");
+            }
+            return;
+        }
+        
+        // Validate items
+        for (const [index, item] of items.entries()) {
+            if (
+            !item.description.trim() ||
+            !item.quantity ||
+            Number(item.quantity) <= 0 ||
+            !item.unitPrice ||
+            Number(item.unitPrice) <= 0
+            ) {
+            if (onValidationError) {
+                onValidationError(`Please fill in valid description, quantity, and unit price for item #${index + 1}.`);
+            }
+            return;
+            }
+        }
+        
+        // Clear error if all fields are valid
+        if (onValidationError) {
+            onValidationError("");
+        }
+
         html2pdf()
             .set({
                 filename: 'invoice.pdf',
@@ -23,7 +51,7 @@ export default function Invoice({ customer, items }) {
 
     return (
         <>
-            <div ref={invoiceRef} style={{ padding: "20mm", fontFamily: "Garet, sans-serif", color: "#000" }}>
+            <div ref={invoiceRef} style={{ padding: "20mm", fontFamily: "Garet, sans-serif", color: "#000", border: "1px solid #ccc", borderRadius: 8, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
                 <div className="header" style={{ borderBottom: "2px solid #000", marginBottom: 20 }}>
                     <h1 style={{ fontSize: 24, margin: 0 }}>INVOICE</h1>
                     <div style={{ textAlign: "right", fontWeight: "bold", fontSize: 16, marginTop: -20 }}>
