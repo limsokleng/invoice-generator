@@ -79,57 +79,47 @@ const InvoiceContent = React.forwardRef(({ customer, items }, ref) => {
             </div>
 
             {/* Summary Totals */}
-            <div style={{ float: "right", width: "30%", marginBottom: 20 }}>
-                <table style={{ width: "100%", fontSize: 14, borderCollapse: "collapse" }}>
+            <div style={{ textAlign: "right", marginBottom: 60 }}>
+                <table style={{ float: "right", fontSize: 14 }}>
                     <tbody>
                         <tr>
-                            <td colSpan="3" style={{ textAlign: "right" }}>SUBTOTAL</td>
-                            <td style={{ textAlign: "right" }}>${subtotal}</td>
+                            <td style={{ padding: "4px 12px 4px 0", textAlign: "right" }}>Subtotal:</td>
+                            <td style={{ fontWeight: "bold" }}>${subtotal.toFixed(2)}</td>
                         </tr>
                         <tr>
-                            <td colSpan="3" style={{ textAlign: "right", paddingBottom: 5 }}>Delivery</td>
-                            <td style={{ textAlign: "right", paddingBottom: 5 }}>${delivery}</td>
+                            <td style={{ padding: "4px 12px 4px 0", textAlign: "right" }}>Delivery:</td>
+                            <td style={{ fontWeight: "bold" }}>${delivery.toFixed(2)}</td>
                         </tr>
-                        <tr>
-                            <td colSpan="3" style={{ textAlign: "right", fontWeight: "bold", borderTop: "2px solid #000", paddingTop: 5 }}>
-                                Total
-                            </td>
-                            <td style={{ textAlign: "right", fontWeight: "bold", borderTop: "2px solid #000", paddingTop: 5 }}>
-                                ${total}
-                            </td>
+                        <tr style={{ borderTop: "2px solid #000" }}>
+                            <td style={{ padding: "10px 12px 0 0", fontSize: 16, fontWeight: "bold", textAlign: "right" }}>Total:</td>
+                            <td style={{ padding: "10px 0 0", fontSize: 16, fontWeight: "bold" }}>${total.toFixed(2)}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             {/* Notes Section */}
-            <div style={{ clear: "both", marginTop: 80, fontSize: 12 }}>
+            <div style={{ fontSize: 12, marginBottom: 40 }}>
                 <strong>Notes:</strong><br />
-                Thank you for your business. Please contact us if you have any questions about this invoice.
+                Thank you for your business. Please reach out if you have any questions regarding this invoice.
             </div>
 
 
             {/* Footer Section */}
-            <table style={{ width: "100%", marginTop: 30, fontSize: 10, fontWeight: "bold" }}>
-                <tbody>
-                    <tr>
-                        <td style={{ textAlign: "left" }}>
-                            <FaEnvelope style={{ verticalAlign: "middle", marginRight: 6 }} />
-                            <a href="mailto:vkhon@greatharvest.com" style={{ color: "#000" }}>vkhon@greatharvest.com</a>
-                        </td>
-                        <td style={{ textAlign: "center" }}>
-                            <FaGlobe style={{ verticalAlign: "middle", marginRight: 6 }} />
-                            <a href="https://greatharvestminnetonka.com" style={{ color: "#000" }}>
-                                greatharvestminnetonka.com
-                            </a>
-                        </td>
-                        <td style={{ textAlign: "right" }}>
-                            <FaMapMarkerAlt style={{ verticalAlign: "middle", marginRight: 6 }} />
-                            17416 Minnetonka Blvd, Minnetonka, MN 55345
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style={{ borderTop: "1px solid #ccc", paddingTop: 16, fontSize: 10, color: "#555", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <FaEnvelope style={{ marginRight: 6 }} />
+                    <a href="mailto:vkhon@greatharvest.com" style={{ color: "#555", textDecoration: "none" }}>vkhon@greatharvest.com</a>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <FaGlobe style={{ marginRight: 6 }} />
+                    <a href="https://greatharvestminnetonka.com" style={{ color: "#555", textDecoration: "none" }}>greatharvestminnetonka.com</a>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <FaMapMarkerAlt style={{ marginRight: 6 }} />
+                    17416 Minnetonka Blvd, Minnetonka, MN 55345
+                </div>
+            </div>
         </div>
     );
 });
