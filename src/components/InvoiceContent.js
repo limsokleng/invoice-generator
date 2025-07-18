@@ -11,7 +11,7 @@ const InvoiceContent = React.forwardRef(({ customer, items }, ref) => {
     // const taxAmount = subtotal * taxRate;
     // const total = subtotal + delivery + taxAmount;
 
-    const total = subtotal + delivery;
+    const total = subtotal ;
 
     const today = new Date();
     const formattedDate = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
@@ -73,21 +73,6 @@ const InvoiceContent = React.forwardRef(({ customer, items }, ref) => {
             <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 60 }}>
                 <table style={{ fontSize: 14 }}>
                     <tbody>
-                        <tr>
-                            <td style={{ padding: "4px 12px 4px 0", textAlign: "right" }}>Subtotal:</td>
-                            <td style={{ fontWeight: "bold" }}>{formatCurrency(subtotal)}</td>
-                        </tr>
-                        <tr>
-                            <td style={{ padding: "4px 12px 4px 0", textAlign: "right" }}>Delivery:</td>
-                            <td style={{ fontWeight: "bold" }}>{formatCurrency(delivery)}</td>
-                        </tr>
-                        {/* <tr>
-                            <td style={{ padding: "4px 12px 4px 0", textAlign: "right" }}>Tax (7%):</td>
-                            <td style={{ fontWeight: "bold" }}>{formatCurrency(taxAmount)}</td>
-                        </tr> */}
-                        <tr>
-                            <td colSpan="2" style={{ borderTop: "2px solid #000", paddingTop: "4px" }}></td>
-                        </tr>
                         <tr>
                             <td style={{ padding: "6px 12px 0 0", fontSize: 16, fontWeight: "bold", textAlign: "right" }}>Total:</td>
                             <td style={{ padding: "6px 0 0", fontSize: 16, fontWeight: "bold" }}>{formatCurrency(total)}</td>

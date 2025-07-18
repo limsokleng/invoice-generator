@@ -4,6 +4,8 @@ A simple React app to input customer and invoice item data, preview an invoice, 
 
 ---
 
+**Live Demo:** [https://limsokleng.github.io/invoice-generator](https://limsokleng.github.io/invoice-generator)
+
 ## Features
 
 - Input customer details (name, company, email)
